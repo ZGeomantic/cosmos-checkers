@@ -54,8 +54,15 @@ ignite scaffold message createGame black red \
 
 ### 8. 在 keeper_test 下添加简单的测试用例
 
+---
+
+## Step3: [implement a msg handler]
+
+### 9. 实现 msgServer.CreateGame 逻辑
+
+---
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
-
-## break potin
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
+[implement a msg handler]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/5-create-handling.html
+
