@@ -82,11 +82,22 @@ ignite scaffold message playMove gameIndex fromX:uint fromY:uint toX:uint toY:ui
 ---
 
 ## Step 5: [emit an event]
-### 13. 定义一个 Event
+### 13. 代码中通过 EventManager 发出 event，以及测试代码覆盖
 
 主要是测试用例的编写，掌握对```context```中的 event 进行获取的技巧
 - 对于 event 的捕捉，有固定的方式``` sdk.StringifyEvents(ctx.EventManager().ABCIEvents())```
 - ```StringEvent``` 是先根据 Type 进行分组，再按照执行顺序对数组 ```StringEvent.Attributes```  进行追加的
+
+---
+
+
+## Step 6: [reject a game]
+
+### 14. 定义一个 rejectGame 对象以及pb
+```
+ignite scaffold message rejectGame gameIndex --module checkers
+```
+
 
 
 
