@@ -1,3 +1,4 @@
+## Step 1: [create stored game]
 
 ### 1. 创建一个message
 ```
@@ -38,9 +39,21 @@ message GenesisState {
 
 $ ignite generate proto-go
 ```
-
-
 ### 6. 为 StoredGame 添加帮助函数
 
-## breakpoint:
-https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
+---
+
+## Step 2: [create message]
+### 7. 创建一个 message 对象
+```
+ignite scaffold message createGame black red \
+    --module checkers \
+    --response gameIndex
+```
+
+
+
+[create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
+
+## break potin
+[create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
