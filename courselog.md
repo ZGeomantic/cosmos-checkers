@@ -39,5 +39,8 @@ message GenesisState {
 $ ignite generate proto-go
 ```
 
+
+### 6. 为 StoredGame 添加帮助函数
+
 ## breakpoint:
 https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
