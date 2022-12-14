@@ -28,5 +28,16 @@ ignite scaffold map storedGame board turn black red \
     --no-message
 ```
 
+### 5. GenesisState.SystemInfo 设为 not null
+```
+// 为第二个字段加上标签 [(gogoproto.nullable) = false]
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  SystemInfo systemInfo = 2 [(gogoproto.nullable) = false];  
+
+
+$ ignite generate proto-go
+```
+
 ## breakpoint:
 https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
