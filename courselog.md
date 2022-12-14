@@ -52,6 +52,8 @@ ignite scaffold message createGame black red \
 ```
 
 
+### 8. 在 keeper_test 下添加简单的测试用例
+
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 
