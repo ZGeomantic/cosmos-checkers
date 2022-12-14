@@ -60,6 +60,9 @@ ignite scaffold message createGame black red \
 
 ### 9. 实现 msgServer.CreateGame 逻辑
 
+### 10. 为 msgServer.CreateGame 补充测试代码
+
+
 ---
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
