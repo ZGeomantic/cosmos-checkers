@@ -19,5 +19,14 @@ curl https://raw.githubusercontent.com/batkinson/checkers-go/a09daeb1548dd4cc014
     --no-message
 ```
 
+### 4. 创建 map Store 对象
+
+```
+ignite scaffold map storedGame board turn black red \
+    --index index \
+    --module checkers \
+    --no-message
+```
+
 ## breakpoint:
 https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
