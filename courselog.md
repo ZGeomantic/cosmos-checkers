@@ -62,10 +62,24 @@ ignite scaffold message createGame black red \
 
 ### 10. 为 msgServer.CreateGame 补充测试代码
 
+---
 
+## Step4: [make a move]
+
+
+### 11. 创建一个新的 message playMove
+
+```
+ignite scaffold message playMove gameIndex fromX:uint fromY:uint toX:uint toY:uint \
+    --module checkers \
+    --response capturedX:int,capturedY:int,winner
+```
+
+### 12. 
 ---
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
 [implement a msg handler]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/5-create-handling.html
 
+[make a move]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/6-play-game.html
