@@ -22,3 +22,16 @@ func setupMsgServerCreateGame(t testing.TB) (types.MsgServer, keeper.Keeper, con
 	checkers.InitGenesis(ctx, *k, *types.DefaultGenesis())
 	return keeper.NewMsgServerImpl(*k), *k, sdk.WrapSDKContext(ctx)
 }
+
+func setupMsgServerWithOneGameForPlayMove(t testing.TB) (types.MsgServer, keeper.Keeper, context.Context) {
+	k, ctx := keepertest.CheckersKeeper(t)
+	checkers.InitGenesis(ctx, *k, *types.DefaultGenesis())
+	server := keeper.NewMsgServerImpl(*k)
+	context := sdk.WrapSDKContext(ctx)
+	server.CreateGame(context, &types.MsgCreateGame{
+		Creator: alice,
+		Black:   bob,
+		Red:     carol,
+	})
+	return server, *k, context
+}

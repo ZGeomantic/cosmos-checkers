@@ -75,7 +75,11 @@ ignite scaffold message playMove gameIndex fromX:uint fromY:uint toX:uint toY:ui
     --response capturedX:int,capturedY:int,winner
 ```
 
-### 12. 
+### 12. 实现 msgServer.PlayMove  以及测试代码
+
+**Note** 并没有把教程职工完整的测试用例都粘贴过来
+
+
 ---
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
