@@ -96,6 +96,13 @@ ignite scaffold message playMove gameIndex fromX:uint fromY:uint toX:uint toY:ui
 ### 14. 定义一个 rejectGame 对象以及pb
 ```
 ignite scaffold message rejectGame gameIndex --module checkers
+
+# 修改 pb 后重新编译一下
+# message StoredGame {
+#     ...
+#     uint64 moveCount = 6;
+# } 
+ignite generate proto-go
 ```
 
 
