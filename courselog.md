@@ -56,7 +56,7 @@ ignite scaffold message createGame black red \
 
 ---
 
-## Step3: [implement a msg handler]
+## Step 3: [implement a msg handler]
 
 ### 9. 实现 msgServer.CreateGame 逻辑
 
@@ -64,7 +64,7 @@ ignite scaffold message createGame black red \
 
 ---
 
-## Step4: [make a move]
+## Step 4: [make a move]
 
 
 ### 11. 创建一个新的 message playMove
@@ -77,7 +77,18 @@ ignite scaffold message playMove gameIndex fromX:uint fromY:uint toX:uint toY:ui
 
 ### 12. 实现 msgServer.PlayMove  以及测试代码
 
-**Note** 并没有把教程职工完整的测试用例都粘贴过来
+**Note** 并没有把教程中完整的测试用例都粘贴过来
+
+---
+
+## Step 5: [emit an event]
+### 13. 定义一个 Event
+
+主要是测试用例的编写，掌握对```context```中的 event 进行获取的技巧
+- 对于 event 的捕捉，有固定的方式``` sdk.StringifyEvents(ctx.EventManager().ABCIEvents())```
+- ```StringEvent``` 是先根据 Type 进行分组，再按照执行顺序对数组 ```StringEvent.Attributes```  进行追加的
+
+
 
 
 ---
@@ -85,5 +96,6 @@ ignite scaffold message playMove gameIndex fromX:uint fromY:uint toX:uint toY:ui
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
 [implement a msg handler]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/5-create-handling.html
-
 [make a move]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/6-play-game.html
+[emit an event]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/7-events.html
+[reject a game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/8-reject-game.html
