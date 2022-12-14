@@ -106,6 +106,8 @@ ignite generate proto-go
 ```
 
 
+### 15. 实现 msgServer.RejectGame 以及测试代码
+
 
 
 
