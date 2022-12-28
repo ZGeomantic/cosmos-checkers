@@ -20,17 +20,20 @@ func (k msgServer) CreateGame(goCtx context.Context, msg *types.MsgCreateGame) (
 
 	newGame := rules.New()
 	storedGame := types.StoredGame{
-		Index: newIndex,
-		Board: newGame.String(),
-		Turn:  rules.PieceStrings[newGame.Turn],
-		Black: msg.Black,
-		Red:   msg.Red,
+		Index:       newIndex,
+		Board:       newGame.String(),
+		Turn:        rules.PieceStrings[newGame.Turn],
+		Black:       msg.Black,
+		Red:         msg.Red,
+		BeforeIndex: types.NoFifoIndex,
+		AfterIndex:  types.NoFifoIndex,
 	}
 
 	if err := storedGame.Validate(); err != nil {
 		return nil, err
 	}
 
+	k.Keeper.SendToFifoTail(ctx, &storedGame, &sysInfo)
 	k.Keeper.SetStoredGame(ctx, storedGame)
 	sysInfo.NextId++
 	k.Keeper.SetSystemInfo(ctx, sysInfo)
