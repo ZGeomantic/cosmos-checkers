@@ -111,7 +111,28 @@ ignite generate proto-go
 
 ### 16. 为游戏实现 FIFO 排序
 
+准备环境变量
+```
+export alice=$(checkersd keys show alice -a)
+export bob=$(checkersd keys show bob -a)
 
+```
+
+启动链
+```
+ignite chain serve --reset-once
+```
+
+执行测试命令
+```
+checkersd query checkers show-system-info
+
+checkersd tx checkers create-game $alice $bob --from $bob
+checkersd query checkers show-system-info
+checkersd query checkers show-stored-game 1
+
+
+```
 ---
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
