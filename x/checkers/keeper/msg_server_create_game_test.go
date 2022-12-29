@@ -28,14 +28,15 @@ func TestCreate1GameHasSaved(t *testing.T) {
 		Black:   bob,
 		Red:     carol,
 	})
-	systemInfo, found := keeper.GetSystemInfo(sdk.UnwrapSDKContext(context))
+	ctx := sdk.UnwrapSDKContext(context)
+	systemInfo, found := keeper.GetSystemInfo(ctx)
 	require.True(t, found)
 	require.EqualValues(t, types.SystemInfo{
 		NextId:        2,
 		FifoHeadIndex: "1",
 		FifoTailIndex: "1",
 	}, systemInfo)
-	game1, found1 := keeper.GetStoredGame(sdk.UnwrapSDKContext(context), "1")
+	game1, found1 := keeper.GetStoredGame(ctx, "1")
 	require.True(t, found1)
 	require.EqualValues(t, types.StoredGame{
 		Index:       "1",
@@ -45,6 +46,7 @@ func TestCreate1GameHasSaved(t *testing.T) {
 		Red:         carol,
 		BeforeIndex: "-1",
 		AfterIndex:  "-1",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, game1)
 }
 
@@ -110,6 +112,7 @@ func TestCreate3GamesHasSaved(t *testing.T) {
 		Red:         carol,
 		BeforeIndex: "-1",
 		AfterIndex:  "2",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, game1)
 	game2, found2 := keeper.GetStoredGame(ctx, "2")
 	require.True(t, found2)
@@ -121,6 +124,7 @@ func TestCreate3GamesHasSaved(t *testing.T) {
 		Red:         alice,
 		BeforeIndex: "1",
 		AfterIndex:  "3",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, game2)
 	game3, found3 := keeper.GetStoredGame(ctx, "3")
 	require.True(t, found3)
@@ -132,6 +136,7 @@ func TestCreate3GamesHasSaved(t *testing.T) {
 		Red:         bob,
 		BeforeIndex: "2",
 		AfterIndex:  "-1",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, game3)
 }
 
@@ -154,6 +159,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 	})
 	games := keeper.GetAllStoredGame(sdk.UnwrapSDKContext(context))
 	require.Len(t, games, 3)
+	ctx := sdk.UnwrapSDKContext(context)
 	require.EqualValues(t, types.StoredGame{
 		Index:       "1",
 		Board:       "*b*b*b*b|b*b*b*b*|*b*b*b*b|********|********|r*r*r*r*|*r*r*r*r|r*r*r*r*",
@@ -162,6 +168,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 		Red:         carol,
 		BeforeIndex: "-1",
 		AfterIndex:  "2",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, games[0])
 	require.EqualValues(t, types.StoredGame{
 		Index:       "2",
@@ -171,6 +178,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 		Red:         alice,
 		BeforeIndex: "1",
 		AfterIndex:  "3",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, games[1])
 	require.EqualValues(t, types.StoredGame{
 		Index:       "3",
@@ -180,6 +188,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 		Red:         bob,
 		BeforeIndex: "2",
 		AfterIndex:  "-1",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, games[2])
 }
 
@@ -215,6 +224,7 @@ func TestCreateGameFarFuture(t *testing.T) {
 		Red:         carol,
 		BeforeIndex: "-1",
 		AfterIndex:  "-1",
+		Deadline:    types.FormatDeadline(types.GetNextDeadline(ctx)),
 	}, game1)
 }
 
