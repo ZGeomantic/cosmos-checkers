@@ -154,11 +154,25 @@ checkersd query checkers show-system-info
 
 ### 18. 添加 winner (test case broken)
 
-还需要给测试用例补上```Winner:    "*",```，留在最后一次性修复测试用例吧
+还需要给测试用例补上 ```Winner:    "*"```，留在最后一次性修复测试用例吧
 
 ---
 
 
+## Step 10: [auto expiring games]
+
+### 19. 使用 EndBlock 机制实现过期游戏的清理
+
+1.  添加新的逻辑。```AppModule.EndBlock()```函数里添加，属于具体的模块 ```x/checkers/module.go```
+   
+2.  在 ```app/app.go``` 里注册全局模块的调用顺序
+```
+app.mm.SetOrderEndBlockers(
+        crisistypes.ModuleName,
+        ...
++      checkersmoduletypes.ModuleName,
+    )
+```    
 
 
 ---
@@ -173,3 +187,4 @@ checkersd query checkers show-system-info
 [put game in order]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/1-game-fifo.html#
 [keep an up-to-date game deadline]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/2-game-deadline.html
 [record a winner]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/3-game-winner.html
+[auto expiring games]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/4-game-forfeit.html
