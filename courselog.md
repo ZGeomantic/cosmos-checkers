@@ -108,7 +108,9 @@ ignite generate proto-go
 
 ### 15. 实现 msgServer.RejectGame 以及测试代码
 
+---
 
+## Step 7: [put game in order]
 ### 16. 为游戏实现 FIFO 排序
 
 准备环境变量
@@ -132,8 +134,22 @@ checkersd query checkers show-system-info
 checkersd query checkers show-stored-game 1
 
 
+checkersd tx checkers create-game $alice $bob --from $bob
+checkersd query checkers show-system-info
+
+checkersd tx checkers play-move 2 1 2 2 3 --from $alice
+checkersd query checkers show-system-info
+
 ```
+
+
 ---
+## Step 8: [keep an up-to-date game deadline]
+
+### 17. 新增 deadline 字段，补充相应逻辑
+
+
+
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
@@ -141,3 +157,5 @@ checkersd query checkers show-stored-game 1
 [make a move]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/6-play-game.html
 [emit an event]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/7-events.html
 [reject a game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/8-reject-game.html
+[put game in order]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/1-game-fifo.html#
+[keep an up-to-date game deadline]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/2-game-deadline.html
