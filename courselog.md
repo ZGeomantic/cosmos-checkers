@@ -148,7 +148,20 @@ checkersd query checkers show-system-info
 
 ### 17. 新增 deadline 字段，补充相应逻辑
 
+---
 
+## Step 9: [record a winner]
+
+### 18. 添加 winner (test case broken)
+
+还需要给测试用例补上```Winner:    "*",```，留在最后一次性修复测试用例吧
+
+---
+
+
+
+
+---
 
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
@@ -159,3 +172,4 @@ checkersd query checkers show-system-info
 [reject a game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/8-reject-game.html
 [put game in order]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/1-game-fifo.html#
 [keep an up-to-date game deadline]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/2-game-deadline.html
+[record a winner]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/3-game-winner.html
