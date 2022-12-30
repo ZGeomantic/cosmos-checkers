@@ -175,6 +175,11 @@ app.mm.SetOrderEndBlockers(
 ```    
 
 
+## Step 11: [set a wager]
+
+### 20 增加 wager 字段，以及 cobra 命令行工具调整
+
+
 ---
 
 
@@ -188,3 +193,4 @@ app.mm.SetOrderEndBlockers(
 [keep an up-to-date game deadline]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/2-game-deadline.html
 [record a winner]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/3-game-winner.html
 [auto expiring games]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/4-game-forfeit.html
+[set a wager]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/5-game-wager.html
