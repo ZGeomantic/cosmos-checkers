@@ -177,9 +177,9 @@ app.mm.SetOrderEndBlockers(
 
 ## Step 11: [set a wager]
 
-### 20 增加 wager 字段，以及 cobra 命令行工具调整
+### 20. 增加 wager 字段，以及 cobra 命令行工具调整
 
-
+### 21. 为 checker 模块添加可以操作账户资金的权限（bank capability）
 ---
 
 
