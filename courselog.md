@@ -185,6 +185,9 @@ app.mm.SetOrderEndBlockers(
 
 ### 23. 使用 gomock 完善 bank keeper 的单元测试
 
+
+### 24. 改造代码，准备可用于集成测试的 testSuite
+
 ---
 
 
