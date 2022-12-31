@@ -180,6 +180,8 @@ app.mm.SetOrderEndBlockers(
 ### 20. 增加 wager 字段，以及 cobra 命令行工具调整
 
 ### 21. 为 checker 模块添加可以操作账户资金的权限（bank capability）
+
+### 22. 实现下注、发放奖金、退还资金的操作
 ---
 
 
