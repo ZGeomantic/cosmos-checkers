@@ -188,7 +188,16 @@ app.mm.SetOrderEndBlockers(
 
 ### 24. 改造代码，准备可用于集成测试的 testSuite
 
+这里从 cosmos-sdk 和 simapp 中移植了不少的代码
+
+### 25. 利用上一步的改造成果，添加集成测试用例
+
+
 ---
+## Step 12: [incentivize players]
+
+### 26. 
+
 
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
@@ -202,3 +211,4 @@ app.mm.SetOrderEndBlockers(
 [record a winner]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/3-game-winner.html
 [auto expiring games]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/4-game-forfeit.html
 [set a wager]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/5-game-wager.html
+[incentivize players]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/6-gas-meter.html
