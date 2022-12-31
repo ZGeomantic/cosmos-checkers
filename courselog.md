@@ -182,6 +182,9 @@ app.mm.SetOrderEndBlockers(
 ### 21. 为 checker 模块添加可以操作账户资金的权限（bank capability）
 
 ### 22. 实现下注、发放奖金、退还资金的操作
+
+### 23. 使用 gomock 完善 bank keeper 的单元测试
+
 ---
 
 

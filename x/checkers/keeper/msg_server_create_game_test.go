@@ -255,7 +255,8 @@ func TestCreate1GameEmitted(t *testing.T) {
 }
 
 func TestPlayMoveEmitted(t *testing.T) {
-	msgServer, _, context := setupMsgServerWithOneGameForPlayMove(t)
+	msgServer, _, context, ctrl, _ := setupMsgServerWithOneGameForPlayMove(t)
+	defer ctrl.Finish()
 	msgServer.PlayMove(context, &types.MsgPlayMove{
 		Creator:   bob,
 		GameIndex: "1",
@@ -282,7 +283,8 @@ func TestPlayMoveEmitted(t *testing.T) {
 }
 
 func TestPlayMove2Emitted(t *testing.T) {
-	msgServer, _, context := setupMsgServerWithOneGameForPlayMove(t)
+	msgServer, _, context, ctrl, _ := setupMsgServerWithOneGameForPlayMove(t)
+	defer ctrl.Finish()
 	msgServer.PlayMove(context, &types.MsgPlayMove{
 		Creator:   bob,
 		GameIndex: "1",

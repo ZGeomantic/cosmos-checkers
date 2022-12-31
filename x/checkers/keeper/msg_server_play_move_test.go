@@ -9,7 +9,8 @@ import (
 )
 
 func TestPlayMove(t *testing.T) {
-	msgServer, _, context := setupMsgServerWithOneGameForPlayMove(t)
+	msgServer, _, context, ctrl, _ := setupMsgServerWithOneGameForPlayMove(t)
+	defer ctrl.Finish()
 	playMoveResponse, err := msgServer.PlayMove(context, &types.MsgPlayMove{
 		Creator:   bob,
 		GameIndex: "1",
@@ -27,7 +28,8 @@ func TestPlayMove(t *testing.T) {
 }
 
 func TestPlayMoveCannotParseGame(t *testing.T) {
-	msgServer, k, context := setupMsgServerWithOneGameForPlayMove(t)
+	msgServer, k, context, ctrl, _ := setupMsgServerWithOneGameForPlayMove(t)
+	defer ctrl.Finish()
 	ctx := sdk.UnwrapSDKContext(context)
 	storedGame, _ := k.GetStoredGame(ctx, "1")
 	storedGame.Board = "not a board"

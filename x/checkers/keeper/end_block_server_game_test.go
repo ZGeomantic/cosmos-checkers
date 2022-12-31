@@ -10,7 +10,8 @@ import (
 )
 
 func TestForfeitUnplayed(t *testing.T) {
-	_, keeper, context := setupMsgServerWithOneGameForPlayMove(t)
+	_, keeper, context, ctrl, _ := setupMsgServerWithOneGameForPlayMove(t)
+	defer ctrl.Finish()
 	ctx := sdk.UnwrapSDKContext(context)
 	game1, found := keeper.GetStoredGame(ctx, "1")
 	require.True(t, found)
