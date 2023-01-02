@@ -196,8 +196,7 @@ app.mm.SetOrderEndBlockers(
 ---
 ## Step 12: [incentivize players]
 
-### 26. 
-
+### 26. 通过 ```ctx.GasMeter()``` 进行 Gas 费用的收取和退回操作
 
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts

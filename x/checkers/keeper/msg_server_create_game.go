@@ -40,6 +40,7 @@ func (k msgServer) CreateGame(goCtx context.Context, msg *types.MsgCreateGame) (
 	k.Keeper.SetStoredGame(ctx, storedGame)
 	sysInfo.NextId++
 	k.Keeper.SetSystemInfo(ctx, sysInfo)
+	ctx.GasMeter().ConsumeGas(types.CreateGameGas, "Create game")
 
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(types.GameCreatedEventType,
