@@ -199,6 +199,17 @@ app.mm.SetOrderEndBlockers(
 ### 26. 通过 ```ctx.GasMeter()``` 进行 Gas 费用的收取和退回操作
 
 
+--- 
+## Step 13: [help find a correct move]
+
+### 27. 构造一个查询接口
+
+```
+ignite scaffold query canPlayMove gameIndex player fromX:uint fromY:uint toX:uint toY:uint \
+    --module checkers \
+    --response possible:bool,reason
+```
+
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
 [implement a msg handler]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/5-create-handling.html
@@ -211,3 +222,4 @@ app.mm.SetOrderEndBlockers(
 [auto expiring games]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/4-game-forfeit.html
 [set a wager]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/5-game-wager.html
 [incentivize players]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/6-gas-meter.html
+[help find a correct move]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/7-can-play.html
