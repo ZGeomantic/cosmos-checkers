@@ -216,6 +216,16 @@ ignite scaffold query canPlayMove gameIndex player fromX:uint fromY:uint toX:uin
  ignite chain build
 ```
 
+---
+
+## Step 14: [play with IBC tokens]
+
+### 29. 调整proto，在创建游戏时指定 denom, 由 StoredGame.GetWagerCoin() 根据入参指定下注的币种
+
+
+
+
+--- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
 [implement a msg handler]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/5-create-handling.html
@@ -229,3 +239,4 @@ ignite scaffold query canPlayMove gameIndex player fromX:uint fromY:uint toX:uin
 [set a wager]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/5-game-wager.html
 [incentivize players]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/6-gas-meter.html
 [help find a correct move]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/7-can-play.html
+[play with IBC tokens]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/8-wager-denom.html
