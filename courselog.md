@@ -202,12 +202,18 @@ app.mm.SetOrderEndBlockers(
 --- 
 ## Step 13: [help find a correct move]
 
-### 27. 构造一个查询接口
+### 27. 构造一个查询接口 canPlayMove
 
 ```
 ignite scaffold query canPlayMove gameIndex player fromX:uint fromY:uint toX:uint toY:uint \
     --module checkers \
     --response possible:bool,reason
+```
+
+### 28. 实现查询接口的逻辑，以及单元、集成测试的补充
+
+```
+ ignite chain build
 ```
 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
