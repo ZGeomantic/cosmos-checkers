@@ -223,7 +223,11 @@ ignite scaffold query canPlayMove gameIndex player fromX:uint fromY:uint toX:uin
 ### 29. 调整proto，在创建游戏时指定 denom, 由 StoredGame.GetWagerCoin() 根据入参指定下注的币种
 
 
+### 30. 对 IBC 进行测试，为测试函数都加上 denom 入参。调通了多个币都可以进行质押的测试用例
 
+这里还是有点奇怪，这个算是 IBC 吗？不是在同一个链上添加多个币种作为资产而已吗？
+并且发起IBC转账的时候，其实不用特殊的函数吗？仍然用 bank.SendCoinsFromAccountToModule or BaseSendKeeper.SendCoins 就可以处理 IBC 之间的 token 转移？
+It's still a bit strange here, is this an IBC? Isn't it just adding multiple currencies as assets on the same chain?
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
