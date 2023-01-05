@@ -228,7 +228,45 @@ ignite scaffold query canPlayMove gameIndex player fromX:uint fromY:uint toX:uin
 这里还是有点奇怪，这个算是 IBC 吗？不是在同一个链上添加多个币种作为资产而已吗？
 并且发起IBC转账的时候，其实不用特殊的函数吗？仍然用 bank.SendCoinsFromAccountToModule or BaseSendKeeper.SendCoins 就可以处理 IBC 之间的 token 转移？
 It's still a bit strange here, is this an IBC? Isn't it just adding multiple currencies as assets on the same chain?
+There is no need to specified it's a IBC transfer？ Just by call bank.SendCoinsFromAccountToModule  or  BaseSendKeeper.SendCoins is enough? It can handle both IBC transfer and local transfer?
 
+
+## Step 15: [go relayer]
+
+### 31. 启动 relayer 节点
+
+add the chain config files manually:
+```
+rly chains add --url https://raw.githubusercontent.com/cosmos/relayer/main/docs/example-configs/cosmoshub-4.json  cosmoshub
+rly chains add --url https://raw.githubusercontent.com/cosmos/relayer/main/docs/example-configs/osmosis-1.json osmosis
+```
+
+生成key:
+```
+$ rly keys add cosmoshub key_for_cosmoshub
+
+{"mnemonic":"much shock monitor lounge guide tribe cereal elephant slight lawn crystal robust spot dynamic dose sentence theme company drop vintage vault mother print bag","address":"cosmos1zfgr4d9sk2rt7fsl095dnnfljpm9zv7eps4xns"}
+
+
+$ rly keys add osmosis key_for_osmosis
+{"mnemonic":"supreme scale legal govern tag exchange vivid physical staff attract pepper gift faculty treat bike acid execute bachelor oak ozone reason follow judge vessel","address":"osmo16fzufh7qatdfpfxdctg9800ala3l85aw3tvnn5"}
+```
+
+卡在这一步，好像是拿不到 ChainProvider
+```
+ $ rly paths fetch
+ panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x8 pc=0x4e26749]
+
+goroutine 1 [running]:
+github.com/cosmos/relayer/v2/relayer.(*Chain).ChainID(...)
+	/Users/zhonglei/Codes/courses/cosmos/academy-course/relayer/relayer/chain.go:91
+github.com/cosmos/relayer/v2/cmd.pathsFetchCmd.func1(0xc001052500, {0x5ec3210?, 0x0?, 0x0?})
+	/Users/zhonglei/Codes/courses/cosmos/academy-course/relayer/cmd/paths.go:336 +0x829
+github.com/spf13/cobra.(*Command).execute(0xc001052500, {0x5ec3210, 0x0, 0x0})
+	/Users/zhonglei/go/pkg/mod/github.com/spf13/cobra@v1.5.0/command.go:872 +0x694
+github.com/spf13/cobra.(*Command).ExecuteC(0xc001035400)
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
@@ -244,3 +282,4 @@ It's still a bit strange here, is this an IBC? Isn't it just adding multiple cur
 [incentivize players]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/6-gas-meter.html
 [help find a correct move]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/7-can-play.html
 [play with IBC tokens]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/8-wager-denom.html
+[go relayer]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/3-go-relayer.html
