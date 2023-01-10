@@ -267,6 +267,19 @@ github.com/spf13/cobra.(*Command).execute(0xc001052500, {0x5ec3210, 0x0, 0x0})
 	/Users/zhonglei/go/pkg/mod/github.com/spf13/cobra@v1.5.0/command.go:872 +0x694
 github.com/spf13/cobra.(*Command).ExecuteC(0xc001035400)
 ```
+
+## Step 16: [cosmos js objects]
+
+### 32. 编译前端 pb 文件
+
+```
+git submodule add git@github.com:cosmos/academy-checkers-ui.git client
+
+$ cd scripts
+$ npm init
+$ npm install ts-proto@1.121.6 --save-dev --save-exact
+# 之交给 makefile 完成
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
@@ -283,3 +296,4 @@ github.com/spf13/cobra.(*Command).ExecuteC(0xc001035400)
 [help find a correct move]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/7-can-play.html
 [play with IBC tokens]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/8-wager-denom.html
 [go relayer]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/3-go-relayer.html
+[cosmos js objects]: https://interchainacademy.cosmos.network/hands-on-exercise/3-cosmjs-adv/1-cosmjs-objects.html
