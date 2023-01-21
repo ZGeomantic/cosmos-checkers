@@ -296,7 +296,11 @@ ignite scaffold module leaderboard --ibc
 ignite scaffold map playerInfo wonCount:uint lostCount:uint dateUpdated:string --module leaderboard --no-message
 ```
 
+### 35. create board object
 
+```
+ignite scaffold single board PlayerInfo:PlayerInfo --module leaderboard --no-message
+```
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
