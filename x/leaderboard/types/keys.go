@@ -23,6 +23,11 @@ const (
 	PortID = "leaderboard"
 )
 
+const (
+	TimeLayout              = "2006-01-02 15:04:05.999999999 +0000 UTC"
+	LeaderboardWinnerLength = uint64(100)
+)
+
 var (
 	// PortKey defines the key to store the port ID in store
 	PortKey = KeyPrefix("leaderboard-port-")

@@ -303,10 +303,13 @@ ignite scaffold single board PlayerInfo:PlayerInfo --module leaderboard --no-mes
 ```
 
 
-### 36. adjust proto file
+### 36. adjust proto file to support null filed
 ```
 ignite generate proto-go
 ```
+
+
+### 37. pass leaderboard keeper to checkers keeper
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
