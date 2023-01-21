@@ -312,10 +312,11 @@ ignite generate proto-go
 ### 37. pass leaderboard keeper to checkers keeper
 
 
+### 38. checkers module call the keeper of the leaderboard module
 
-### 38. checkers module  call the keeper of the leaderboard module
 
 
+### 39. 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
