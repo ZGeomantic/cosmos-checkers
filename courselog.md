@@ -290,6 +290,14 @@ $ npm install ts-proto@1.121.6 --save-dev --save-exact
 ignite scaffold module leaderboard --ibc
 ```
 
+
+### 34. create playerInfo object
+```
+ignite scaffold map playerInfo wonCount:uint lostCount:uint dateUpdated:string --module leaderboard --no-message
+```
+
+
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
