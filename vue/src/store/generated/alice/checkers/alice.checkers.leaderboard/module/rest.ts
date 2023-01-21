@@ -10,8 +10,10 @@
  */
 
 export interface LeaderboardBoard {
-  playerInfo?: LeaderboardPlayerInfo;
+  playerInfo?: LeaderboardPlayerInfo[];
 }
+
+export type LeaderboardMsgSendCandidateResponse = object;
 
 /**
  * Params defines the parameters for the module.

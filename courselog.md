@@ -317,7 +317,15 @@ ignite generate proto-go
 FIXME: leaderboard 的 MsgUpdateBoard 和 MsgUpdateBoardResponse 没有实现
 
 
-### 39. 
+### 39. foward player information via IBC
+
+```
+ignite scaffold packet candidate PlayerInfo:PlayerInfo --module leaderboard
+```
+
+这个命令会调整两个文件：
+- tx.proto 中生成一个发送的接口（Msg类型），用于处理rpc接口
+- packet.proto 中生成一个 packet 类型的对象，用于链之间的调用
 
 
 --- 
