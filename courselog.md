@@ -280,6 +280,16 @@ $ npm init
 $ npm install ts-proto@1.121.6 --save-dev --save-exact
 # 之交给 makefile 完成
 ```
+
+
+## Step 17: [enable ibc]
+
+### 33. add an ibc module
+
+```
+ignite scaffold module leaderboard --ibc
+```
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
@@ -297,3 +307,4 @@ $ npm install ts-proto@1.121.6 --save-dev --save-exact
 [play with IBC tokens]: https://interchainacademy.cosmos.network/hands-on-exercise/2-ignite-cli-adv/8-wager-denom.html
 [go relayer]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/3-go-relayer.html
 [cosmos js objects]: https://interchainacademy.cosmos.network/hands-on-exercise/3-cosmjs-adv/1-cosmjs-objects.html
+[enable ibc]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/8-ibc-app-checkers.html
