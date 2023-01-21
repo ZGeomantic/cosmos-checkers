@@ -302,6 +302,11 @@ ignite scaffold map playerInfo wonCount:uint lostCount:uint dateUpdated:string -
 ignite scaffold single board PlayerInfo:PlayerInfo --module leaderboard --no-message
 ```
 
+
+### 36. adjust proto file
+```
+ignite generate proto-go
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
