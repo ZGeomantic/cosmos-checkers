@@ -314,9 +314,12 @@ ignite generate proto-go
 
 ### 38. checkers module call the keeper of the leaderboard module
 
+FIXME: leaderboard 的 MsgUpdateBoard 和 MsgUpdateBoardResponse 没有实现
 
 
 ### 39. 
+
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html

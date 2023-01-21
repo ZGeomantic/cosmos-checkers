@@ -23,7 +23,7 @@ func TestGenesis(t *testing.T) {
 			},
 		},
 		Board: &types.Board{
-			PlayerInfo: new(types.PlayerInfo),
+			PlayerInfo: make([]types.PlayerInfo, 0),
 		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
