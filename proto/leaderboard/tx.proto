@@ -9,6 +9,7 @@ option go_package = "github.com/alice/checkers/x/leaderboard/types";
 // Msg defines the Msg service.
 service Msg {
       rpc SendCandidate(MsgSendCandidate) returns (MsgSendCandidateResponse);
+  rpc UpdateBoard(MsgUpdateBoard) returns (MsgUpdateBoardResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -22,4 +23,11 @@ message MsgSendCandidate {
 
 message MsgSendCandidateResponse {
 }
+message MsgUpdateBoard {
+  string creator = 1;
+}
+
+message MsgUpdateBoardResponse {
+}
+
 // this line is used by starport scaffolding # proto/tx/message

@@ -15,6 +15,8 @@ export interface LeaderboardBoard {
 
 export type LeaderboardMsgSendCandidateResponse = object;
 
+export type LeaderboardMsgUpdateBoardResponse = object;
+
 /**
  * Params defines the parameters for the module.
  */

@@ -10,8 +10,8 @@ import (
 func (k msgServer) UpdateBoard(goCtx context.Context, msg *types.MsgUpdateBoard) (*types.MsgUpdateBoardResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	playerInfoList := k.GetAllPlayerInfo(ctx)
-	k.updateBoard(ctx, playerInfoList)
+	// TODO: Handling the message
+	_ = ctx
 
 	return &types.MsgUpdateBoardResponse{}, nil
 }

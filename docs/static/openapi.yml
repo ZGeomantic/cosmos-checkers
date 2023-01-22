@@ -31717,6 +31717,8 @@ definitions:
               type: string
   alice.checkers.leaderboard.MsgSendCandidateResponse:
     type: object
+  alice.checkers.leaderboard.MsgUpdateBoardResponse:
+    type: object
   alice.checkers.leaderboard.Params:
     type: object
     description: Params defines the parameters for the module.

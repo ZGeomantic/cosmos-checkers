@@ -314,7 +314,9 @@ ignite generate proto-go
 
 ### 38. checkers module call the keeper of the leaderboard module
 
-FIXME: leaderboard 的 MsgUpdateBoard 和 MsgUpdateBoardResponse 没有实现
+```
+ignite scaffold message updateBoard --module leaderboard
+```
 
 
 ### 39. foward player information via IBC
