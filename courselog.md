@@ -427,6 +427,40 @@ network:
 ### 42. prepare images for checkersd
 
 
+### 43. prepare iamges for KMS
+
+由于本地已经有了 rust 环境，所以不采用教程里的 multi-stage docker build 方案了，采用本地编译。
+```
+git clone --branch v0.12.2 https://github.com/iqlusioninc/tmkms.git
+# git fetch --tags
+# git checkout v0.12.2
+
+export RUSTFLAGS=-Ctarget-feature=+aes,+ssse3
+export CC_x86_64-unknown-linux-gnu=x86_64-linux-musl-gcc
+
+# 要为交叉编译做准备，安装编译器
+$ brew install SergioBenitez/osxct/x86_64-unknown-linux-gnu
+# rust 工具链要安装对应的 Target
+rustup target add x86_64-unknown-linux-gnu
+# 修改 ~/.cargo/config，添加交叉编译的指令
+[target.x86_64-unknown-linux-gnu]
+linker = "x86_64-unknown-linux-gnu-gcc"
+
+cargo build --target x86_64-unknown-linux-gnu --release --features=softsign 
+```
+
+更新 makefile，编译 KMS image：
+```
+docker-build-kms:
+	docker build -f dockerfiles/prod-kms  -t tmkms_i:v0.12.2
+```
+
+运行：
+```
+docker run --rm -it tmkms_i:v0.12.2
+``
+
+
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
