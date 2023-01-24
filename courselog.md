@@ -330,6 +330,79 @@ ignite scaffold packet candidate PlayerInfo:PlayerInfo --module leaderboard
 - packet.proto 中生成一个 packet 类型的对象，用于链之间的调用
 
 
+
+### 40. IBC module intergation
+
+方案一：
+```
+// app.go
+
+
+// OPTIONAL: add scoped keepers in case the middleware wishes to
+// send a packet or acknowledgment without
+// the involvement of the underlying application	
+
+scopedKeeperTransfer := capabilityKeeper.NewScopedKeeper("transfer")
+scopedKeeperCustom1 := capabilityKeeper.NewScopedKeeper("custom1")
+scopedKeeperCustom2 := capabilityKeeper.NewScopedKeeper("custom2")
+
+
+// For example, if the middleware mw1 needs the ability to send a packet on custom2's port without 
+// involving the underlying application custom2, it would require 
+// access to the latter's scopedKeeper:
+// mw1Keeper := mw1.NewKeeper(storeKey1, scopedKeeperCustom2)
+
+
+// create a keeper for the stateful middleware
+mw1Keeper := mw1.NewKeeper(storeKey1)
+mw3Keeper := mw3.NewKeeper(storeKey3)
+
+
+// instantiate the middleware as IBCModules
+mw1IBCModule := mw1.NewIBCModule(mw1Keeper)
+mw2IBCModule := mw2.NewIBCModule()  // optional: middleware2 is stateless middleware
+mw3IBCModule := mw3.NewIBCModule(mw3Keeper)
+
+
+
+// register the middleware in app module
+// if the module maintains an independent state and/or processes sdk.Msgs
+app.moduleManager = module.NewManager(
+    ...
+    mw1.NewAppModule(mw1Keeper),
+    mw3.NewAppModule(mw3Keeper),
+    transfer.NewAppModule(transferKeeper),
+    custom.NewAppModule(customKeeper)
+)
+
+```
+
+
+方案二：
+```
+// initialize base IBC applications
+//
+// if you want to create two different stacks with the same base application,
+// they must be given different scopedKeepers and assigned different ports
+transferIBCModule := transfer.NewIBCModule(transferKeeper)
+customIBCModule1 := custom.NewIBCModule(customKeeper, "portCustom1")
+customIBCModule2 := custom.NewIBCModule(customKeeper, "portCustom2")
+
+
+
+stack1 := mw1.NewIBCMiddleware(mw3.NewIBCMiddleware(transferIBCModule, mw3Keeper), mw1Keeper)
+// stack 2 contains mw3 -> mw2 -> custom1
+stack2 := mw3.NewIBCMiddleware(mw2.NewIBCMiddleware(customIBCModule1), mw3Keeper)
+// stack 3 contains mw2 -> mw1 -> custom2
+stack3 := mw2.NewIBCMiddleware(mw1.NewIBCMiddleware(customIBCModule2, mw1Keeper))
+
+ibcRouter := porttypes.NewRouter()
+ibcRouter.AddRoute("transfer", stack1)
+ibcRouter.AddRoute("custom1", stack2)
+ibcRouter.AddRoute("custom2", stack3)
+app.IBCKeeper.SetRouter(ibcRouter)
+
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
