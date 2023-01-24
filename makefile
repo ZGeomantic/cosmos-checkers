@@ -29,3 +29,20 @@ gen-protoc-ts: download-cosmos-proto install-protoc-gen-ts
         --proto_path="./proto" \
         --ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=messages" \
         checkers/{}
+
+
+build-all:
+	GOOS=linux GOARCH=amd64 go build -o ./build/checkersd-linux-amd64 ./cmd/checkersd/main.go
+	# GOOS=linux GOARCH=arm64 go build -o ./build/checkersd-linux-arm64 ./cmd/checkersd/main.go
+	# GOOS=darwin GOARCH=amd64 go build -o ./build/checkersd-darwin-amd64 ./cmd/checkersd/main.go
+	# GOOS=darwin GOARCH=arm64 go build -o ./build/checkersd-darwin-arm64 ./cmd/checkersd/main.go
+
+docker-build-checkersd:
+	docker build -f dockerfiles/prod-checkersd.dockerfile --build-arg BUILDARCH=amd64 . -t checkersd_i
+
+do-checksum:
+	cd build && sha256sum \
+        checkersd-linux-amd64 \
+        > checkers_checksum
+
+build-with-checksum: build-all do-checksum

@@ -403,6 +403,31 @@ ibcRouter.AddRoute("custom2", stack3)
 app.IBCKeeper.SetRouter(ibcRouter)
 
 ```
+
+## [simulate production in docker]
+
+### 41. outlines
+Three independent parties - Alice, Bob, and Carol.
+Two independent validator nodes, run by Alice and Bob respectively, that can only communicate with their own sentries and do not expose RPC endpoints.
+Additionally, Alice's validator node uses Tendermint Key Management System (TMKMS) on a separate machine.
+The two sentry nodes, run by Alice and Bob, expose endpoints to the world.
+A regular node, run by Carol, that can communicate with only the sentries and exposes endpoints for use by clients.
+
+containers:
+- Alice's containers: sentry-alice, val-alice, and kms-alice.
+- Bob's containers: sentry-bob and val-bob.
+- Carol's containers: node-carol.
+
+network:
+- Alice's validator and key management system (KMS) are on their private network: name it net-alice-kms.
+- Alice's validator and sentry are on their private network: name it net-alice.
+- Bob's validator and sentry are on their private network: name it net-bob.
+- There is a public network on which both sentries and Carol's node run: name it net-public.
+
+### 42. prepare images for checkersd
+
+
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
@@ -421,3 +446,4 @@ app.IBCKeeper.SetRouter(ibcRouter)
 [go relayer]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/3-go-relayer.html
 [cosmos js objects]: https://interchainacademy.cosmos.network/hands-on-exercise/3-cosmjs-adv/1-cosmjs-objects.html
 [enable ibc]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/8-ibc-app-checkers.html
+[simulate production in docker]: https://interchainacademy.cosmos.network/hands-on-exercise/4-run-in-prod/1-run-prod-docker.html
