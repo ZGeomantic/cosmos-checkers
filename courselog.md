@@ -447,17 +447,33 @@ rustup target add x86_64-unknown-linux-gnu
 linker = "x86_64-unknown-linux-gnu-gcc"
 
 cargo build --target x86_64-unknown-linux-gnu --release --features=softsign 
-```
-
-更新 makefile，编译 KMS image：
-```
-docker-build-kms:
-	docker build -f dockerfiles/prod-kms  -t tmkms_i:v0.12.2
 
 生成的文件在：
 /Users/zhonglei/Codes/courses/cosmos/academy-course/tmkms/target/x86_64-unknown-linux-gnu/release/tmkms
 
 mv /Users/zhonglei/Codes/courses/cosmos/academy-course/tmkms/target/x86_64-unknown-linux-gnu/release/tmkms /Users/zhonglei/Codes/courses/cosmos/academy-course/checkers/build
+```
+
+上面的做法在 apline 的镜像下有点问题，因为 gnu 编译出来的二进制在 alpine 镜像中会有动态库缺失的问题导致无法运行，需要用 musl 这个版本来编译：
+```
+# ~/.cargo/config 内容改为
+[build]
+target = "x86_64-unknown-linux-musl"
+
+[target.x86_64-unknown-linux-musl]
+linker = "/usr/local/bin/x86_64-linux-musl-gcc"
+
+cargo build --target x86_64-unknown-linux-musl --release --features=softsign 
+
+mv /Users/zhonglei/Codes/courses/cosmos/academy-course/tmkms/target/x86_64-unknown-linux-musl/release/tmkms /Users/zhonglei/Codes/courses/cosmos/academy-course/checkers/build
+
+```
+更新 makefile，编译 KMS image：
+```
+docker-build-kms:
+	docker build -f dockerfiles/prod-kms  -t tmkms_i:v0.12.2
+
+
 ```
 
 运行：
@@ -527,7 +543,7 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
 ```
 
 
-## 45. Validator operator keys for Alice and Bob
+## 45. gen Validator operator keys for Alice and Bob
 
 create operation keys for alice, (passpharse: password)
 
@@ -582,7 +598,16 @@ mixture arena announce spin fringe fatigue thrive tragic energy cable oak camera
 ```
 
 
+## 46. 为 Alice 的 tmkms 生成配置文件
 
+```
+docker run --rm -it \
+    -v $(pwd)/docker/kms-alice:/root/tmkms \
+    tmkms_i:v0.12.2 \
+    init /root/tmkms
+   Generated KMS configuration: /root/tmkms/tmkms.toml
+   Generated Secret Connection key: /root/tmkms/secrets/kms-identity.key
+```
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts

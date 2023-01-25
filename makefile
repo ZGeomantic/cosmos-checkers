@@ -41,7 +41,7 @@ docker-build-checkersd:
 	docker build -f dockerfiles/prod-checkersd.dockerfile --build-arg BUILDARCH=amd64 . -t checkersd_i
 
 docker-build-kms:
-	docker build -f dockerfiles/prod-kms.dockerfile  -t tmkms_i:v0.12.2
+	docker build -f dockerfiles/prod-kms.dockerfile . -t tmkms_i:v0.12.2
 
 do-checksum:
 	cd build && sha256sum \
