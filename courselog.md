@@ -453,14 +453,43 @@ cargo build --target x86_64-unknown-linux-gnu --release --features=softsign
 ```
 docker-build-kms:
 	docker build -f dockerfiles/prod-kms  -t tmkms_i:v0.12.2
+
+生成的文件在：
+/Users/zhonglei/Codes/courses/cosmos/academy-course/tmkms/target/x86_64-unknown-linux-gnu/release/tmkms
+
+mv /Users/zhonglei/Codes/courses/cosmos/academy-course/tmkms/target/x86_64-unknown-linux-gnu/release/tmkms /Users/zhonglei/Codes/courses/cosmos/academy-course/checkers/build
 ```
 
 运行：
 ```
 docker run --rm -it tmkms_i:v0.12.2
-``
+```
+
+### 44. 准备初始化的配置文件
+
+生成配置文件：
+```
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
+    | xargs -I {} \
+    docker run --rm -i \
+    -v $(pwd)/docker/{}:/root/.checkers \
+    checkersd_i \
+    init checkers
+```
 
 
+The default initialization sets the base token to stake, so to get it to be upawn
+```
+docker run --rm -it \
+    -v $(pwd)/docker/val-alice:/root/.checkers \
+    --entrypoint sed \
+    checkersd_i \
+    -i 's/"stake"/"upawn"/g' /root/.checkers/config/genesis.json
+
+# macos 上要用这个命令
+sed -i "" 's/"stake"/"upawn"/g' ./docker/val-alice/config/genesis.json
+
+```
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
