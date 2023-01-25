@@ -673,7 +673,24 @@ docker run --rm -it \
     -v $(pwd)/docker/val-alice:/root/.checkers \
     checkersd_i collect-gentxs
 
+# As an added precaution, confirm that it is a valid genesis
+docker run --rm -it \
+    -v $(pwd)/docker/val-alice:/root/.checkers \
+    checkersd_i \
+    validate-genesis
+
 ```
+
+
+
+Genesis distribution
+```
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-bob \
+    | xargs -I {} \
+    cp docker/val-alice/config/genesis.json docker/{}/config
+```
+
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
