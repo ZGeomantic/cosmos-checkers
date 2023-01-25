@@ -478,7 +478,7 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
 ```
 
 
-The default initialization sets the base token to stake, so to get it to be upawn
+in genesis.json, the default initialization sets the base token to stake, so to get it to be upawn
 ```
 docker run --rm -it \
     -v $(pwd)/docker/val-alice:/root/.checkers \
@@ -491,6 +491,21 @@ sed -i "" 's/"stake"/"upawn"/g' ./docker/val-alice/config/genesis.json
 
 ```
 
+in app.toml, replace stake to upawn
+```
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
+    | xargs -I {} \
+    docker run --rm -i \
+    -v $(pwd)/docker/{}:/root/.checkers \
+    --entrypoint sed \
+    checkersd_i \
+    -Ei 's/([0-9]+)stake/\1upawn/g' /root/.checkers/config/app.toml
+
+# macos 上要用这个命令
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
+    | xargs -I {} \
+    sed  -Ei  "" 's/([0-9]+)stake/\1upawn/g' ./docker/{}/config/app.toml
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
