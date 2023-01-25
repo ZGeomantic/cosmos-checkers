@@ -1,5 +1,5 @@
 {
-  "genesis_time": "2023-01-25T02:11:25.729241072Z",
+  "genesis_time": "2023-01-25T02:11:25.093755569Z",
   "chain_id": "checkers",
   "initial_height": "1",
   "consensus_params": {
@@ -30,7 +30,22 @@
         "sig_verify_cost_ed25519": "590",
         "sig_verify_cost_secp256k1": "1000"
       },
-      "accounts": []
+      "accounts": [
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "cosmos1dngyd53yxc5c9vswss9a3nalrpqdwfzqj7k2e5",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "cosmos1u2yzjj59v7qudl4mgk3svtz0hjxptrvz0zpqzu",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        }
+      ]
     },
     "authz": {
       "authorization": []
@@ -40,7 +55,26 @@
         "send_enabled": [],
         "default_send_enabled": true
       },
-      "balances": [],
+      "balances": [
+        {
+          "address": "cosmos1dngyd53yxc5c9vswss9a3nalrpqdwfzqj7k2e5",
+          "coins": [
+            {
+              "denom": "upawn",
+              "amount": "1000000000"
+            }
+          ]
+        },
+        {
+          "address": "cosmos1u2yzjj59v7qudl4mgk3svtz0hjxptrvz0zpqzu",
+          "coins": [
+            {
+              "denom": "upawn",
+              "amount": "500000000"
+            }
+          ]
+        }
+      ],
       "supply": [],
       "denom_metadata": []
     },
@@ -59,7 +93,7 @@
     },
     "crisis": {
       "constant_fee": {
-        "denom": "stake",
+        "denom": "upawn",
         "amount": "1000"
       }
     },
@@ -99,7 +133,7 @@
       "deposit_params": {
         "min_deposit": [
           {
-            "denom": "stake",
+            "denom": "upawn",
             "amount": "10000000"
           }
         ],
@@ -159,7 +193,7 @@
         "annual_provisions": "0.000000000000000000"
       },
       "params": {
-        "mint_denom": "stake",
+        "mint_denom": "upawn",
         "inflation_rate_change": "0.130000000000000000",
         "inflation_max": "0.200000000000000000",
         "inflation_min": "0.070000000000000000",
@@ -204,7 +238,7 @@
         "max_validators": 100,
         "max_entries": 7,
         "historical_entries": 10000,
-        "bond_denom": "stake"
+        "bond_denom": "upawn"
       },
       "last_total_power": "0",
       "last_validator_powers": [],
