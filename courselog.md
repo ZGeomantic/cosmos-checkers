@@ -665,7 +665,15 @@ echo password | docker run --rm -i \
     --gas-prices 0.1upawn
 ```
 
+Genesis assembly，把创世交易（staking txs）汇总在一起，放入创世文件
+```
+cp docker/val-bob/config/gentx/gentx-* \
+    docker/val-alice/config/gentx
+docker run --rm -it \
+    -v $(pwd)/docker/val-alice:/root/.checkers \
+    checkersd_i collect-gentxs
 
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
