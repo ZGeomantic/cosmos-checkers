@@ -627,7 +627,15 @@ docker run --rm -it \
 2. 在 ```kms-alice``` 节点的配置上，配置 ```addr = "tcp://val-alice:26659"``` 指向 ```val-alice``` 节点
 
 
+## 49. Genesis 
 
+Have Alice add her initial balance in the genesis:
+```
+docker run --rm -it \
+    -v $(pwd)/docker/val-alice:/root/.checkers \
+    checkersd_i \
+    add-genesis-account $ALICE 1000000000upawn
+```
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
