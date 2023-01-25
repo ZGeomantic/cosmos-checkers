@@ -456,6 +456,8 @@ mv /Users/zhonglei/Codes/courses/cosmos/academy-course/tmkms/target/x86_64-unkno
 
 上面的做法在 apline 的镜像下有点问题，因为 gnu 编译出来的二进制在 alpine 镜像中会有动态库缺失的问题导致无法运行，需要用 musl 这个版本来编译：
 ```
+# brew install FiloSottile/musl-cross/musl-cross
+# rustup target add x86_64-unknown-linux-musl
 # ~/.cargo/config 内容改为
 [build]
 target = "x86_64-unknown-linux-musl"
@@ -608,6 +610,17 @@ docker run --rm -it \
    Generated KMS configuration: /root/tmkms/tmkms.toml
    Generated Secret Connection key: /root/tmkms/secrets/kms-identity.key
 ```
+
+
+
+## 47. Import the consensus key into `kms-alice`
+
+1. 在 val-alice 节点上生成公钥文件 pub_validator_key.json
+2. 并把私钥文件 priv_validator_key-val-alice.json 移动到 kms-alice 节点上
+3. 用 tmkms 命令，把私钥文件导入 softsign 设备，保存到 key 文件： docker/kms-alice/secrets/val-alice-consensus.key
+4. 为了防止 val-alice 再重新生成一份 private key 的文件，从 sentry-alice 下拷一份文件来 ```cp docker/sentry-alice/config/priv_validator_key.json docker/val-alice/config/```
+
+
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
