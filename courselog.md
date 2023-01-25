@@ -706,7 +706,7 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-bob \
 - Bob sentry : 1ca0bd1504409a03f6781fe45839dc89b34a73bd
 - Carol: 0e6389ab29a8fd05c74cdac7fd68db0b525c508a
 
-
+# 51. 编写 docker-compose
 
 
 --- 
