@@ -629,13 +629,42 @@ docker run --rm -it \
 
 ## 49. Genesis 
 
-Have Alice add her initial balance in the genesis:
+Have Alice add her initial balance in the genesis,so does Bob
 ```
 docker run --rm -it \
     -v $(pwd)/docker/val-alice:/root/.checkers \
     checkersd_i \
     add-genesis-account $ALICE 1000000000upawn
 ```
+
+
+Make Bob's stake
+```
+echo password | docker run --rm -i \
+    -v $(pwd)/docker/val-bob:/root/.checkers \
+    checkersd_i \
+    gentx bob 40000000upawn \
+    --keyring-backend file --keyring-dir /root/.checkers/keys \
+    --account-number 0 --sequence 0 \
+    --chain-id checkers-1 \
+    --gas 1000000 \
+    --gas-prices 0.1upawn
+```
+
+Create Alice's genesis transaction using the specific validator public key that you saved on file, and not the key that would be taken from priv_validator_key.json by default (and is now missing):
+```
+echo password | docker run --rm -i \
+    -v $(pwd)/docker/val-alice:/root/.checkers \
+    checkersd_i \
+    gentx alice 60000000upawn \
+    --keyring-backend file --keyring-dir /root/.checkers/keys \
+    --account-number 0 --sequence 0 \
+    --pubkey $(cat docker/val-alice/config/pub_validator_key.json) \
+    --chain-id checkers-1 \
+    --gas 1000000 \
+    --gas-prices 0.1upawn
+```
+
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
