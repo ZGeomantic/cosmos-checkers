@@ -22,7 +22,7 @@ path = "/root/tmkms/secrets/val-alice-consensus.key"
 
 [[validator]]
 chain_id = "checkers-1"
-addr = "tcp://deadbeefdeadbeefdeadbeefdeadbeefdeadbeef@example1.example.com:26658"
+addr = "tcp://val-alice:26659"
 secret_key = "/root/tmkms/secrets/kms-identity.key"
 protocol_version = "v0.34"
 reconnect = true

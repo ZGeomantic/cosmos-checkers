@@ -621,6 +621,13 @@ docker run --rm -it \
 4. 为了防止 val-alice 再重新生成一份 private key 的文件，从 sentry-alice 下拷一份文件来 ```cp docker/sentry-alice/config/priv_validator_key.json docker/val-alice/config/```
 
 
+## 48. Set up the KMS connection
+
+1. 在 ```val-alice``` 节点上屏蔽掉 ```priv_validator_key_file``` 和 ```priv_validator_state_file``` 的读取，打开端口 ```priv_validator_laddr``` 准备与 KMS 连接
+2. 在 ```kms-alice``` 节点的配置上，配置 ```addr = "tcp://val-alice:26659"``` 指向 ```val-alice``` 节点
+
+
+
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
