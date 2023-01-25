@@ -508,7 +508,7 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
 ```
 
 
-Make sure that config/client.toml (opens new window)mentions checkers-1
+Make sure that config/client.toml mentions checkers-1
 ```
 echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
     | xargs -I {} \
@@ -525,6 +525,65 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
     sed  -Ei "" 's/^chain-id = .*$/chain-id = "checkers-1"/g' \
     ./docker/{}/config/client.toml
 ```
+
+
+## 45. Validator operator keys for Alice and Bob
+
+create operation keys for alice, (passpharse: password)
+
+```
+docker run --rm -it \
+    -v $(pwd)/docker/val-alice:/root/.checkers \
+    checkersd_i \
+    keys \
+    --keyring-backend file --keyring-dir /root/.checkers/keys \
+    add alice
+Enter keyring passphrase:
+Re-enter keyring passphrase:
+
+- name: alice
+  type: local
+  address: cosmos1dngyd53yxc5c9vswss9a3nalrpqdwfzqj7k2e5
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A8oMqt3oVk6R53WW9UaZ8+oE7S9q3fqZZcaTxFalTMBz"}'
+  mnemonic: ""
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+busy sugar tobacco dizzy spray coin among salute stadium slot festival walk unfair bench bargain river tribe birth pond solar royal plug fatigue priority
+```
+
+create operation keys for bob, (passpharse: password)
+```
+$ mkdir -p docker/val-bob/keys
+$ echo -n password > docker/val-bob/keys/passphrase.txt
+$ docker run --rm -it \
+    -v $(pwd)/docker/val-bob:/root/.checkers \
+    checkersd_i \
+    keys \
+    --keyring-backend file --keyring-dir /root/.checkers/keys \
+    add bob
+
+Enter keyring passphrase:
+Re-enter keyring passphrase:
+
+- name: bob
+  type: local
+  address: cosmos1u2yzjj59v7qudl4mgk3svtz0hjxptrvz0zpqzu
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A0zXFTPghu0VKz2GsbYAqA6N8ihF5FNZlID+ivGBzxvh"}'
+  mnemonic: ""
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+mixture arena announce spin fringe fatigue thrive tragic energy cable oak camera gorilla term elite august neutral razor client isolate cradle casino catch feed
+```
+
+
+
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
