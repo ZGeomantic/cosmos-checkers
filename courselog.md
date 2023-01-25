@@ -690,6 +690,22 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-bob \
     cp docker/val-alice/config/genesis.json docker/{}/config
 ```
 
+# 50. Network prepare
+
+
+根据 Node id，设置 `sentry-alice` 的 `seeds`, `persistent_peers` 和 `private_peer_ids` 选项，保护 `alice-val` 的地址，同时连通 Bob 和 Carol
+```
+ docker run --rm -i \
+    -v $(pwd)/docker/sentry-bob:/root/.checkers \
+    checkersd_i \
+    tendermint show-node-id
+```
+- Alice: 1cc5693c859804e9c829e43ce24ea69a6fde23b3
+- Bob sentry : 1ca0bd1504409a03f6781fe45839dc89b34a73bd
+- Carol: 0e6389ab29a8fd05c74cdac7fd68db0b525c508a
+
+
+
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
