@@ -506,6 +506,25 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
     | xargs -I {} \
     sed  -Ei  "" 's/([0-9]+)stake/\1upawn/g' ./docker/{}/config/app.toml
 ```
+
+
+Make sure that config/client.toml (opens new window)mentions checkers-1
+```
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
+    | xargs -I {} \
+    docker run --rm -i \
+    -v $(pwd)/docker/{}:/root/.checkers \
+    --entrypoint sed \
+    checkersd_i \
+    -Ei 's/^chain-id = .*$/chain-id = "checkers-1"/g' \
+    /root/.checkers/config/client.toml
+
+# macos 上用这个命令
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
+    | xargs -I {} \
+    sed  -Ei "" 's/^chain-id = .*$/chain-id = "checkers-1"/g' \
+    ./docker/{}/config/client.toml
+```
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
