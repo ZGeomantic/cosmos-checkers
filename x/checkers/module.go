@@ -13,6 +13,7 @@ import (
 
 	"github.com/alice/checkers/x/checkers/client/cli"
 	"github.com/alice/checkers/x/checkers/keeper"
+	v2 "github.com/alice/checkers/x/checkers/migrations/v2"
 	"github.com/alice/checkers/x/checkers/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -163,7 +164,7 @@ func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.Raw
 }
 
 // ConsensusVersion implements ConsensusVersion.
-func (AppModule) ConsensusVersion() uint64 { return 2 }
+func (AppModule) ConsensusVersion() uint64 { return v2.TargetConsensusVersion }
 
 // BeginBlock executes all ABCI BeginBlock logic respective to the capability module.
 func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}
