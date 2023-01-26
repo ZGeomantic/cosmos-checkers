@@ -770,6 +770,10 @@ func (k *Keeper) MustRegisterPlayerForfeit(ctx sdk.Context, storedGame *types.St
 ## 54. 实现完整的 leaderboard 功能的 v2 版链开发完成
 
 
+## 55. Consensus version and name
+
+
+## 56. 把升级的 callback 逻辑注册到 module 和 app 中
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
