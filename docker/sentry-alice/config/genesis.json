@@ -1,6 +1,6 @@
 {
   "genesis_time": "2023-01-25T02:11:25.093755569Z",
-  "chain_id": "checkers",
+  "chain_id": "checkers-1",
   "initial_height": "1",
   "consensus_params": {
     "block": {

@@ -708,6 +708,24 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-bob \
 
 # 51. 编写 docker-compose
 
+完成 compose 文件编写后
+```
+# 启动
+docker compose --project-name checkers-prod up --detach
+
+# 停止
+docker compose --project-name checkers-prod down
+
+# 清理
+echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
+    | xargs -I {} \
+    docker run --rm -i \
+    -v $(pwd)/docker/{}:/root/.checkers \
+    checkersd_i \
+    tendermint unsafe-reset-all \
+    --home /root/.checkers
+
+```
 
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
