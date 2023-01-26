@@ -17,6 +17,10 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_checkers"
+
+	DateAddedLayout = DeadlineLayout
+
+	LeaderboardWinnerLength = uint64(100)
 )
 
 func KeyPrefix(p string) []byte {

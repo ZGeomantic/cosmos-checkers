@@ -745,6 +745,10 @@ $ ignite scaffold single leaderboard winners --module checkers --no-message
 
 ```
 
+## 53. 为 checkersd 添加逻辑代码，实现本地的 leaderboard 功能
+
+注意，这次和之前的 IBC 章节不同，是在本地链上实现一遍 leaderboard 的逻辑，而不是通过 IBC module 在另一个链上实现
+
 --- 
 [create stored game]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/3-stored-game.html#some-initial-thoughts
 [create message]: https://interchainacademy.cosmos.network/hands-on-exercise/1-ignite-cli/4-create-message.html
