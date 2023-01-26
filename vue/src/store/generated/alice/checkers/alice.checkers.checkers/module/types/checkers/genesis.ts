@@ -2,6 +2,8 @@
 import { Params } from "../checkers/params";
 import { SystemInfo } from "../checkers/system_info";
 import { StoredGame } from "../checkers/stored_game";
+import { PlayerInfo } from "../checkers/player_info";
+import { Leaderboard } from "../checkers/leaderboard";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "alice.checkers.checkers";
@@ -10,8 +12,10 @@ export const protobufPackage = "alice.checkers.checkers";
 export interface GenesisState {
   params: Params | undefined;
   systemInfo: SystemInfo | undefined;
-  /** this line is used by starport scaffolding # genesis/proto/state */
   storedGameList: StoredGame[];
+  playerInfoList: PlayerInfo[];
+  /** this line is used by starport scaffolding # genesis/proto/state */
+  leaderboard: Leaderboard | undefined;
 }
 
 const baseGenesisState: object = {};
@@ -27,6 +31,15 @@ export const GenesisState = {
     for (const v of message.storedGameList) {
       StoredGame.encode(v!, writer.uint32(26).fork()).ldelim();
     }
+    for (const v of message.playerInfoList) {
+      PlayerInfo.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.leaderboard !== undefined) {
+      Leaderboard.encode(
+        message.leaderboard,
+        writer.uint32(42).fork()
+      ).ldelim();
+    }
     return writer;
   },
 
@@ -35,6 +48,7 @@ export const GenesisState = {
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseGenesisState } as GenesisState;
     message.storedGameList = [];
+    message.playerInfoList = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -49,6 +63,14 @@ export const GenesisState = {
             StoredGame.decode(reader, reader.uint32())
           );
           break;
+        case 4:
+          message.playerInfoList.push(
+            PlayerInfo.decode(reader, reader.uint32())
+          );
+          break;
+        case 5:
+          message.leaderboard = Leaderboard.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -60,6 +82,7 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     const message = { ...baseGenesisState } as GenesisState;
     message.storedGameList = [];
+    message.playerInfoList = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
     } else {
@@ -74,6 +97,16 @@ export const GenesisState = {
       for (const e of object.storedGameList) {
         message.storedGameList.push(StoredGame.fromJSON(e));
       }
+    }
+    if (object.playerInfoList !== undefined && object.playerInfoList !== null) {
+      for (const e of object.playerInfoList) {
+        message.playerInfoList.push(PlayerInfo.fromJSON(e));
+      }
+    }
+    if (object.leaderboard !== undefined && object.leaderboard !== null) {
+      message.leaderboard = Leaderboard.fromJSON(object.leaderboard);
+    } else {
+      message.leaderboard = undefined;
     }
     return message;
   },
@@ -93,12 +126,24 @@ export const GenesisState = {
     } else {
       obj.storedGameList = [];
     }
+    if (message.playerInfoList) {
+      obj.playerInfoList = message.playerInfoList.map((e) =>
+        e ? PlayerInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.playerInfoList = [];
+    }
+    message.leaderboard !== undefined &&
+      (obj.leaderboard = message.leaderboard
+        ? Leaderboard.toJSON(message.leaderboard)
+        : undefined);
     return obj;
   },
 
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = { ...baseGenesisState } as GenesisState;
     message.storedGameList = [];
+    message.playerInfoList = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     } else {
@@ -113,6 +158,16 @@ export const GenesisState = {
       for (const e of object.storedGameList) {
         message.storedGameList.push(StoredGame.fromPartial(e));
       }
+    }
+    if (object.playerInfoList !== undefined && object.playerInfoList !== null) {
+      for (const e of object.playerInfoList) {
+        message.playerInfoList.push(PlayerInfo.fromPartial(e));
+      }
+    }
+    if (object.leaderboard !== undefined && object.leaderboard !== null) {
+      message.leaderboard = Leaderboard.fromPartial(object.leaderboard);
+    } else {
+      message.leaderboard = undefined;
     }
     return message;
   },

@@ -690,7 +690,7 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-bob \
     cp docker/val-alice/config/genesis.json docker/{}/config
 ```
 
-# 50. Network prepare
+## 50. Network prepare
 
 
 根据 Node id，设置 `sentry-alice` 的 `seeds`, `persistent_peers` 和 `private_peer_ids` 选项，保护 `alice-val` 的地址，同时连通 Bob 和 Carol
@@ -706,7 +706,7 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-bob \
 - Bob sentry : 1ca0bd1504409a03f6781fe45839dc89b34a73bd
 - Carol: 0e6389ab29a8fd05c74cdac7fd68db0b525c508a
 
-# 51. 编写 docker-compose
+## 51. 编写 docker-compose
 
 完成 compose 文件编写后
 ```
@@ -724,6 +724,24 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
     checkersd_i \
     tendermint unsafe-reset-all \
     --home /root/.checkers
+
+```
+
+```
+
+./build/checkersd-darwin-amd64 status \
+    --node "tcp://localhost:26657"
+
+```
+
+
+# [introduce upgrade in production]
+
+## 52. 准备 v1/v2 两个版本需要用到的 proto 对象
+
+```
+$ ignite scaffold map playerInfo wonCount:uint lostCount:uint forfeitedCount:uint --module checkers --no-message
+$ ignite scaffold single leaderboard winners --module checkers --no-message
 
 ```
 
@@ -746,3 +764,4 @@ echo -e node-carol'\n'sentry-alice'\n'sentry-bob'\n'val-alice'\n'val-bob \
 [cosmos js objects]: https://interchainacademy.cosmos.network/hands-on-exercise/3-cosmjs-adv/1-cosmjs-objects.html
 [enable ibc]: https://interchainacademy.cosmos.network/hands-on-exercise/5-ibc-adv/8-ibc-app-checkers.html
 [simulate production in docker]: https://interchainacademy.cosmos.network/hands-on-exercise/4-run-in-prod/1-run-prod-docker.html
+[introduce upgrade in production]: https://interchainacademy.cosmos.network/hands-on-exercise/4-run-in-prod/2-migration.html
