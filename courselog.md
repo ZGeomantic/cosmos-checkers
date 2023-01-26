@@ -747,9 +747,25 @@ $ ignite scaffold single leaderboard winners --module checkers --no-message
 
 ## 53. 为 checkersd 添加逻辑代码，实现本地的 leaderboard 功能
 
-注意，这次和之前的 IBC 章节不同，是在本地链上实现一遍 leaderboard 的逻辑，而不是通过 IBC module 在另一个链上实现
+注意，这次和之前的 IBC 章节不同，是在本地链上实现一遍 leaderboard 的逻辑，而不是通过 IBC module 在另一个链上实现。
+主要区别在 `checkers/x/checkers/keeper/player_info_handler.go` 这个文件：
 
+```
+# IBC 版本下，是调用另一个 IBC module 下 keeper 的方法，把 winnerAddress 和 loserAddress 传给 IBC moudule keeper
+func (k *Keeper) MustRegisterPlayerWin(ctx sdk.Context, storedGame *types.StoredGame) {
+	winnerAddress, loserAddress := getWinnerAndLoserAddresses(storedGame)
+	k.board.MustAddWonGameResultToPlayer(ctx, winnerAddress)
+	k.board.MustAddLostGameResultToPlayer(ctx, loserAddress)
+}
 
+func (k *Keeper) MustRegisterPlayerForfeit(ctx sdk.Context, storedGame *types.StoredGame) {
+	winnerAddress, loserAddress := getWinnerAndLoserAddresses(storedGame)
+	k.board.MustAddWonGameResultToPlayer(ctx, winnerAddress)
+	k.board.MustAddForfeitedGameResultToPlayer(ctx, loserAddress)
+}
+
+# 而在本地版本下，这两个函数是返回 winnerAddress 和 loserAddress，本地自己处理
+```
 
 ## 54. 实现完整的 leaderboard 功能的 v2 版链开发完成
 
